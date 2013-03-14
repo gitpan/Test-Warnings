@@ -2,18 +2,18 @@ use strict;
 use warnings;
 package Test::Warnings;
 {
-  $Test::Warnings::VERSION = '0.001'; # TRIAL
+  $Test::Warnings::VERSION = '0.002';
 }
-# git description: 75485fb
+# git description: v0.001-TRIAL-12-gca0403c
 
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
 }
 # ABSTRACT: Test for warnings and the lack of them
 
-use Exporter 'import';
+use parent 'Exporter';
 use Test::Builder;
-use Class::Method::Modifiers;
+use Class::Method::Modifiers ();
 
 our @EXPORT_OK = qw(allow_warnings allowing_warnings had_no_warnings);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
@@ -21,6 +21,16 @@ our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 my $warnings_allowed;
 my $forbidden_warnings_found;
 my $done_testing_called;
+my $no_end_test;
+
+sub import
+{
+    # END block will check for this status
+    my @symbols = grep { $_ ne ':no_end_test' } @_;
+    $no_end_test = (@symbols != @_);
+
+    __PACKAGE__->export_to_level(1, @symbols);
+}
 
 # for testing this module only!
 my $tb;
@@ -41,7 +51,7 @@ $SIG{__WARN__} = sub {
     $forbidden_warnings_found++ if not $warnings_allowed;
 };
 
-if ($Test::Builder::VERSION >= 0.88)
+if (Test::Builder->can('done_testing'))
 {
     # monkeypatch Test::Builder::done_testing:
     # check for any forbidden warnings, and record that we have done so
@@ -60,7 +70,8 @@ if ($Test::Builder::VERSION >= 0.88)
 }
 
 END {
-    if (not $done_testing_called
+    if (not $no_end_test
+        and not $done_testing_called
         # skip this if there is no plan and no tests were run (e.g.
         # compilation tests of this module!)
         and (_builder->expected_tests or ref(_builder) ne 'Test::Builder')
@@ -75,7 +86,7 @@ END {
 # setter
 sub allow_warnings(;$)
 {
-    $warnings_allowed = defined $_[0] ? $_[0] : 1;
+    $warnings_allowed = @_ || defined $_[0] ? $_[0] : 1;
 }
 
 # getter
@@ -99,7 +110,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -142,17 +153,18 @@ with C<use Test::Warnings;> whether or not your tests have a plan.
 
 =head1 FUNCTIONS
 
-The following functions are available for import (not included by default):
+The following functions are available for import (not included by default; you
+can also get all of them by importing the tag C<:all>):
 
 =over
 
-=item * C<< allow_warnings([bool]) >>
+=item * C<< allow_warnings([bool]) >> - EXPERIMENTAL - MAY BE REMOVED
 
 When passed a true value, or no value at all, subsequent warnings will not
 result in a test failure; when passed a false value, subsequent warnings will
 result in a test failure.  Initial value is C<false>.
 
-=item * C<allowing_warnings>
+=item * C<allowing_warnings> - EXPERIMENTAL - MAY BE REMOVED
 
 Returns whether we are currently allowing warnings (set by C<allow_warnings>
 as described above).
@@ -166,7 +178,15 @@ time, as often as desired.
 
 =back
 
-All functions are also available by importing the tag C<:all>.
+=head1 OTHER OPTIONS
+
+=over
+
+=item * C<:all> - Imports all functions listed above
+
+=item * C<:no_end_test> - Disables the addition of a C<had_no_warnings> test via END (but if you don't want to do this, you probably shouldn't be loading this module at all!)
+
+=back
 
 =head1 TO DO (i.e. FUTURE FEATURES, MAYBE)
 
@@ -187,7 +207,7 @@ the end of every subtest via C<done_testing>.
 
 =head1 SUPPORT
 
-Bugs may be submitted through L<https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warning>.
+Bugs may be submitted through L<https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings>.
 I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 
 =head1 SEE ALSO
@@ -195,6 +215,8 @@ I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 L<Test::NoWarnings>
 
 L<Test::FailWarnings>
+
+L<blogs.perl.org: YANWT (Yet Another No-Warnings Tester)|http://blogs.perl.org/users/ether/2013/03/yanwt-yet-another-no-warnings-tester.html>
 
 =head1 AUTHOR
 

@@ -29,10 +29,11 @@ my %WriteMakefileArgs = (
     "Class::Method::Modifiers" => 0,
     "Exporter" => 0,
     "Test::Builder" => 0,
+    "parent" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.001",
+  "VERSION" => "0.002",
   "test" => {
     "TESTS" => "t/*.t"
   }

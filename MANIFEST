@@ -6,7 +6,6 @@ META.json
 META.yml
 Makefile.PL
 README
-blog_20130309.md
 dist.ini
 examples/no_plan.t
 examples/sub.t
@@ -21,8 +20,11 @@ t/01-basic.t
 t/02-done_testing.t
 t/03-subtest.t
 t/04-no-tests.t
+t/05-no-end-block.t
+t/06-skip-all.t
 xt/author/pod-spell.t
 xt/release/changes_has_content.t
+xt/release/clean-namespaces.t
 xt/release/cpan-changes.t
 xt/release/distmeta.t
 xt/release/eol.t

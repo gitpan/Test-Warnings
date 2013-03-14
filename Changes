@@ -1,5 +1,10 @@
 Revision history for Test-Warnings
 
+0.002     2013-03-14 14:47:30 PDT-0700 (Karen Etheridge)
+          Releasing as non-TRIAL for greater visibility.
+          - ':no_end_test' option added
+          - test added showing that we play nicely with 'skip_all'
+
 0.001-TRIAL  2013-03-09 16:56:29 PST-0800 (Karen Etheridge)
-          - ...
+          - Initial release.
 

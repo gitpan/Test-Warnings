@@ -37,6 +37,7 @@
             "Class::Method::Modifiers" : "0",
             "Exporter" : "0",
             "Test::Builder" : "0",
+            "parent" : "0",
             "perl" : "5.006",
             "strict" : "0",
             "warnings" : "0"
@@ -55,10 +56,10 @@
    "provides" : {
       "Test::Warnings" : {
          "file" : "lib/Test/Warnings.pm",
-         "version" : "0.001"
+         "version" : "0.002"
       }
    },
-   "release_status" : "testing",
+   "release_status" : "stable",
    "resources" : {
       "homepage" : "http://metacpan.org/module/Test::Warnings",
       "repository" : {
@@ -67,7 +68,7 @@
          "web" : "https://github.com/karenetheridge/Test-Warnings"
       }
    },
-   "version" : "0.001",
+   "version" : "0.002",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.016003"
@@ -362,7 +363,7 @@
       "zilla" : {
          "class" : "Dist::Zilla::Dist::Builder",
          "config" : {
-            "is_trial" : "1"
+            "is_trial" : "0"
          },
          "version" : "4.300030"
       }
