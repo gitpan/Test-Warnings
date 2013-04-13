@@ -1,5 +1,9 @@
 Revision history for Test-Warnings
 
+0.003     2013-04-13 14:07:58 PDT-0700 (Karen Etheridge)
+          - Test suite (and code) fixed to work in the presence of
+            Test::Builder 1.005+ (TB2)
+
 0.002     2013-03-14 14:47:30 PDT-0700 (Karen Etheridge)
           Releasing as non-TRIAL for greater visibility.
           - ':no_end_test' option added

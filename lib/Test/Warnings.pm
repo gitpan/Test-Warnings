@@ -2,9 +2,9 @@ use strict;
 use warnings;
 package Test::Warnings;
 {
-  $Test::Warnings::VERSION = '0.002';
+  $Test::Warnings::VERSION = '0.003';
 }
-# git description: v0.001-TRIAL-12-gca0403c
+# git description: v0.002-8-g26d39f1
 
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
@@ -59,7 +59,9 @@ if (Test::Builder->can('done_testing'))
     Class::Method::Modifiers::install_modifier('Test::Builder',
         before => done_testing => sub {
             # only do this at the end of all tests, not at the end of a subtest
-            if (not _builder()->parent)
+            my $builder = _builder();
+            my $in_subtest_sub = $builder->can('in_subtest');
+            if (not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
             {
                 local $Test::Builder::Level = $Test::Builder::Level + 3;
                 had_no_warnings('no (unexpected) warnings (via done_testing)');
@@ -72,10 +74,9 @@ if (Test::Builder->can('done_testing'))
 END {
     if (not $no_end_test
         and not $done_testing_called
-        # skip this if there is no plan and no tests were run (e.g.
+        # skip this if there is no plan and no tests have been run (e.g.
         # compilation tests of this module!)
-        and (_builder->expected_tests or ref(_builder) ne 'Test::Builder')
-        and _builder->current_test > 0
+        and (_builder->expected_tests or _builder->current_test > 0)
     )
     {
         local $Test::Builder::Level = $Test::Builder::Level + 1;
@@ -110,7 +111,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 

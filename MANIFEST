@@ -16,7 +16,8 @@ examples/with_plan.t
 lib/Test/Warnings.pm
 t/00-check-deps.t
 t/00-compile.t
-t/01-basic.t
+t/01-basic-tb0.9x.t
+t/01-basic-tb2.t
 t/02-done_testing.t
 t/03-subtest.t
 t/04-no-tests.t
