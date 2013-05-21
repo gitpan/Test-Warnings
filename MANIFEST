@@ -23,12 +23,16 @@ t/03-subtest.t
 t/04-no-tests.t
 t/05-no-end-block.t
 t/06-skip-all.t
+t/07-no_plan.t
+t/08-use-if.t
+weaver.ini
 xt/author/pod-spell.t
 xt/release/changes_has_content.t
 xt/release/clean-namespaces.t
 xt/release/cpan-changes.t
 xt/release/distmeta.t
 xt/release/eol.t
+xt/release/kwalitee.t
 xt/release/minimum-version.t
 xt/release/no-tabs.t
 xt/release/pod-coverage.t

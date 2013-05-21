@@ -31,10 +31,11 @@ my %WriteMakefileArgs = (
     "File::Find" => 0,
     "File::Temp" => 0,
     "Test::CheckDeps" => "0.002",
-    "Test::More" => "0.88",
-    "Test::Tester" => "0.108"
+    "Test::More" => "0.94",
+    "Test::Tester" => "0.108",
+    "if" => 0
   },
-  "VERSION" => "0.003",
+  "VERSION" => "0.004",
   "test" => {
     "TESTS" => "t/*.t"
   }

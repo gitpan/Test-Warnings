@@ -2,9 +2,9 @@ use strict;
 use warnings;
 package Test::Warnings;
 {
-  $Test::Warnings::VERSION = '0.003';
+  $Test::Warnings::VERSION = '0.004';
 }
-# git description: v0.002-8-g26d39f1
+# git description: v0.003-10-g02649b7
 
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
@@ -47,8 +47,16 @@ sub _builder(;$)
 
 $SIG{__WARN__} = sub {
     my $msg = shift;
-    warn $msg;
-    $forbidden_warnings_found++ if not $warnings_allowed;
+
+    if ($warnings_allowed)
+    {
+        Test::Builder->new->note($msg);
+    }
+    else
+    {
+        warn $msg;
+        $forbidden_warnings_found++;
+    }
 };
 
 if (Test::Builder->can('done_testing'))
@@ -59,7 +67,7 @@ if (Test::Builder->can('done_testing'))
     Class::Method::Modifiers::install_modifier('Test::Builder',
         before => done_testing => sub {
             # only do this at the end of all tests, not at the end of a subtest
-            my $builder = _builder();
+            my $builder = _builder;
             my $in_subtest_sub = $builder->can('in_subtest');
             if (not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
             {
@@ -96,7 +104,7 @@ sub allowing_warnings() { $warnings_allowed }
 # call at any time to assert no (unexpected) warnings so far
 sub had_no_warnings(;$)
 {
-    _builder()->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
+    _builder->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
 }
 
 1;
@@ -105,13 +113,17 @@ __END__
 
 =pod
 
+=encoding utf-8
+
+=for :stopwords Karen Etheridge smartmatch TODO subtest subtests irc YANWT
+
 =head1 NAME
 
 Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -165,6 +177,9 @@ When passed a true value, or no value at all, subsequent warnings will not
 result in a test failure; when passed a false value, subsequent warnings will
 result in a test failure.  Initial value is C<false>.
 
+When warnings are allowed, any warnings will instead be emitted via
+L<Test::Builder::note|Test::Builder/Output>.
+
 =item * C<allowing_warnings> - EXPERIMENTAL - MAY BE REMOVED
 
 Returns whether we are currently allowing warnings (set by C<allow_warnings>
@@ -189,7 +204,25 @@ time, as often as desired.
 
 =back
 
-=head1 TO DO (i.e. FUTURE FEATURES, MAYBE)
+=head1 CAVEATS
+
+Sometimes new warnings can appear in Perl that should B<not> block
+installation -- for example, smartmatch was recently deprecated in
+perl 5.17.11, so now any distribution that uses smartmatch and also
+tests for warnings cannot be installed under 5.18.0.  You might want to
+consider only making warnings fail tests in an author environment -- you can
+do this with the L<if> pragma:
+
+    use if $ENV{AUTHOR_TESTING} || $ENV{RELEASE_TESTING}, 'Test::Warnings';
+
+In future versions of this module, when interfaces are added to test the
+content of warnings, there will likely be additional sugar available to
+indicate that warnings should be checked only in author tests (or TODO when
+not in author testing), but will still provide exported subs.  Comments are
+enthusiastically solicited - drop me an email, write up an RT ticket, or come
+by C<#perl-qa> on irc!
+
+=head1 TO DO (i.e. POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 
 =over
 
@@ -203,6 +236,9 @@ closer to a L<Test::Fatal>-like syntax
 L<Test::Builder> object itself, we can allow warnings in a subtest and then
 the state will revert when the subtest ends, as well as check for warnings at
 the end of every subtest via C<done_testing>.
+
+=item * sugar for making failures TODO when testing outside an author
+environment
 
 =back
 
@@ -218,6 +254,9 @@ L<Test::NoWarnings>
 L<Test::FailWarnings>
 
 L<blogs.perl.org: YANWT (Yet Another No-Warnings Tester)|http://blogs.perl.org/users/ether/2013/03/yanwt-yet-another-no-warnings-tester.html>
+
+L<strictures> - which makes all warnings fatal in tests, hence lessening
+the need for special warning testing
 
 =head1 AUTHOR
 

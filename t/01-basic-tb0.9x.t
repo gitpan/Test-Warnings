@@ -20,7 +20,7 @@ END {
 use Test::Warnings ':all';
 
 # we swap out our $tb for Test::Tester's, so we can also test the results
-# of the END block...
+# of the END block... (although not all methods are supported!)
 Test::Warnings::_builder(my $capture = Test::Tester::capture());
 
 allow_warnings;
@@ -36,6 +36,8 @@ allow_warnings(undef);
 ok(!allowing_warnings, 'warnings are still not allowed');
 
 had_no_warnings('no warnings, with a custom name');     # TEST 2
+
+# now we "END"...
 
 # this is run in the END block
 sub final_tests
