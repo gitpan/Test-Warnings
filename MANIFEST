@@ -1,16 +1,17 @@
+Build.PL
 Changes
 INSTALL
 LICENSE
 MANIFEST
 META.json
 META.yml
-Makefile.PL
 README
 dist.ini
 examples/no_plan.t
 examples/sub.t
 examples/synopsis.t
 examples/test_nowarnings.pl
+examples/test_warning_contents.t
 examples/with_done_testing.t
 examples/with_plan.t
 lib/Test/Warnings.pm
@@ -25,6 +26,7 @@ t/05-no-end-block.t
 t/06-skip-all.t
 t/07-no_plan.t
 t/08-use-if.t
+t/09-warnings-contents.t
 weaver.ini
 xt/author/pod-spell.t
 xt/release/changes_has_content.t
