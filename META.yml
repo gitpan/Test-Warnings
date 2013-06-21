@@ -27,9 +27,8 @@ no_index:
 provides:
   Test::Warnings:
     file: lib/Test/Warnings.pm
-    version: 0.005
+    version: 0.006
 requires:
-  Class::Method::Modifiers: 0
   Exporter: 0
   Test::Builder: 0
   parent: 0
@@ -40,7 +39,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings
   homepage: https://github.com/karenetheridge/Test-Warnings
   repository: https://github.com/karenetheridge/Test-Warnings.git
-version: 0.005
+version: 0.006
 x_Dist_Zilla:
   perl:
     version: 5.019000
@@ -303,3 +302,6 @@ x_Dist_Zilla:
       is_trial: 0
     version: 4.300035
 x_authority: cpan:ETHER
+x_contributors:
+  - 'Graham Knop <haarg@haarg.org>'
+  - 'Leon Timmermans <fawaka@gmail.com>'

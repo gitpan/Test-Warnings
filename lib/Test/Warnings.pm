@@ -2,9 +2,9 @@ use strict;
 use warnings;
 package Test::Warnings;
 {
-  $Test::Warnings::VERSION = '0.005';
+  $Test::Warnings::VERSION = '0.006';
 }
-# git description: v0.004-9-g1072bc4
+# git description: v0.005-3-gf277067
 
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
@@ -13,7 +13,6 @@ BEGIN {
 
 use parent 'Exporter';
 use Test::Builder;
-use Class::Method::Modifiers ();
 
 our @EXPORT_OK = qw(
     allow_warnings allowing_warnings
@@ -85,19 +84,23 @@ if (Test::Builder->can('done_testing'))
     # monkeypatch Test::Builder::done_testing:
     # check for any forbidden warnings, and record that we have done so
     # so we do not check again via END
-    Class::Method::Modifiers::install_modifier('Test::Builder',
-        before => done_testing => sub {
-            # only do this at the end of all tests, not at the end of a subtest
-            my $builder = _builder;
-            my $in_subtest_sub = $builder->can('in_subtest');
-            if (not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
-            {
-                local $Test::Builder::Level = $Test::Builder::Level + 3;
-                had_no_warnings('no (unexpected) warnings (via done_testing)');
-                $done_testing_called = 1;
-            }
-        },
-    );
+
+    no strict 'refs';
+    my $orig = *{'Test::Builder::done_testing'}{CODE};
+    no warnings 'redefine';
+    *{'Test::Builder::done_testing'} = sub {
+        # only do this at the end of all tests, not at the end of a subtest
+        my $builder = _builder;
+        my $in_subtest_sub = $builder->can('in_subtest');
+        if (not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
+        {
+            local $Test::Builder::Level = $Test::Builder::Level + 3;
+            had_no_warnings('no (unexpected) warnings (via done_testing)');
+            $done_testing_called = 1;
+        }
+
+        $orig->(@_);
+    };
 }
 
 END {
@@ -136,7 +139,8 @@ __END__
 
 =encoding utf-8
 
-=for :stopwords Karen Etheridge smartmatch TODO subtest subtests irc YANWT
+=for :stopwords Karen Etheridge Graham Knop Leon Timmermans smartmatch TODO subtest
+subtests irc YANWT
 
 =head1 NAME
 
@@ -144,7 +148,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 
@@ -325,5 +329,19 @@ This software is copyright (c) 2013 by Karen Etheridge.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
+
+=head1 CONTRIBUTORS
+
+=over 4
+
+=item *
+
+Graham Knop <haarg@haarg.org>
+
+=item *
+
+Leon Timmermans <fawaka@gmail.com>
+
+=back
 
 =cut

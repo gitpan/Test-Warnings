@@ -12,6 +12,12 @@ __DATA__
 Karen
 Etheridge
 ether
+Graham
+Knop
+haarg
+Leon
+Timmermans
+fawaka
 lib
 Test
 Warnings
