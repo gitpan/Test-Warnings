@@ -2,9 +2,9 @@ use strict;
 use warnings;
 package Test::Warnings;
 {
-  $Test::Warnings::VERSION = '0.006';
+  $Test::Warnings::VERSION = '0.007';
 }
-# git description: v0.005-3-gf277067
+# git description: v0.006-7-gfa2b38c
 
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
@@ -148,7 +148,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SYNOPSIS
 
