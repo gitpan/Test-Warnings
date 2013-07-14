@@ -2,9 +2,9 @@ use strict;
 use warnings;
 package Test::Warnings;
 {
-  $Test::Warnings::VERSION = '0.007';
+  $Test::Warnings::VERSION = '0.008';
 }
-# git description: v0.006-7-gfa2b38c
+# git description: v0.007-5-g916978f
 
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
@@ -148,7 +148,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SYNOPSIS
 
@@ -190,6 +190,9 @@ It is actually equivalent to:
 as warnings are still printed normally as they occur.  You are safe, and
 enthusiastically encouraged, to perform a global search-replace of the above
 with C<use Test::Warnings;> whether or not your tests have a plan.
+
+It can also be used as a replacement for L<Test::Warn>, if you wish to test
+the content of expected warnings; read on to find out how.
 
 =head1 FUNCTIONS
 

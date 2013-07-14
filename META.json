@@ -23,7 +23,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build::Tiny" : "0.024"
+            "Module::Build::Tiny" : "0.025"
          }
       },
       "develop" : {
@@ -62,7 +62,7 @@
    "provides" : {
       "Test::Warnings" : {
          "file" : "lib/Test/Warnings.pm",
-         "version" : "0.007"
+         "version" : "0.008"
       }
    },
    "release_status" : "stable",
@@ -78,7 +78,7 @@
          "web" : "https://github.com/karenetheridge/Test-Warnings"
       }
    },
-   "version" : "0.007",
+   "version" : "0.008",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.019001"
@@ -162,7 +162,7 @@
          {
             "class" : "Dist::Zilla::Plugin::Test::Compile",
             "name" : "@Author::ETHER/Test::Compile",
-            "version" : "2.004"
+            "version" : "2.005"
          },
          {
             "class" : "Dist::Zilla::Plugin::Test::CheckDeps",

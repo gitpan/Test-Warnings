@@ -12,7 +12,7 @@ build_requires:
   Test::Tester: 0.108
   if: 0
 configure_requires:
-  Module::Build::Tiny: 0.024
+  Module::Build::Tiny: 0.025
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.131560'
 license: perl
@@ -28,7 +28,7 @@ no_index:
 provides:
   Test::Warnings:
     file: lib/Test/Warnings.pm
-    version: 0.007
+    version: 0.008
 requires:
   Exporter: 0
   Test::Builder: 0
@@ -40,7 +40,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings
   homepage: https://github.com/karenetheridge/Test-Warnings
   repository: https://github.com/karenetheridge/Test-Warnings.git
-version: 0.007
+version: 0.008
 x_Dist_Zilla:
   perl:
     version: 5.019001
@@ -108,7 +108,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Test::Compile
       name: '@Author::ETHER/Test::Compile'
-      version: 2.004
+      version: 2.005
     -
       class: Dist::Zilla::Plugin::Test::CheckDeps
       name: '@Author::ETHER/Test::CheckDeps'
