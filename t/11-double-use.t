@@ -1,17 +1,18 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More tests => 1;  # avoid our done_testing hook
+use Test::More tests => 1;
 
 END {
     final_tests();
 }
 
+use Test::Warnings 'warning';       # should still not add an END test
 use Test::Warnings ':no_end_test';
 
 warn 'this warning should not be caught';
 
-pass 'a passing test, to keep the harness happy';
+like(warning { warn 'ohhai' }, qr/^ohhai/, 'warning() was imported');
 
 # this is run in the END block
 sub final_tests

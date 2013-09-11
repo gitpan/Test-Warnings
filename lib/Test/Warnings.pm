@@ -1,14 +1,14 @@
 use strict;
 use warnings;
 package Test::Warnings;
-{
-  $Test::Warnings::VERSION = '0.008';
-}
-# git description: v0.007-5-g916978f
-
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
 }
+{
+  $Test::Warnings::VERSION = '0.009';
+}
+# git description: v0.008-13-g8f655c3
+
 # ABSTRACT: Test for warnings and the lack of them
 
 use parent 'Exporter';
@@ -30,7 +30,7 @@ sub import
 {
     # END block will check for this status
     my @symbols = grep { $_ ne ':no_end_test' } @_;
-    $no_end_test = (@symbols != @_);
+    $no_end_test ||= (@symbols != @_);
 
     __PACKAGE__->export_to_level(1, @symbols);
 }
@@ -92,7 +92,8 @@ if (Test::Builder->can('done_testing'))
         # only do this at the end of all tests, not at the end of a subtest
         my $builder = _builder;
         my $in_subtest_sub = $builder->can('in_subtest');
-        if (not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
+        if (not $no_end_test
+            and not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
         {
             local $Test::Builder::Level = $Test::Builder::Level + 3;
             had_no_warnings('no (unexpected) warnings (via done_testing)');
@@ -139,7 +140,7 @@ __END__
 
 =encoding utf-8
 
-=for :stopwords Karen Etheridge Graham Knop Leon Timmermans smartmatch TODO subtest
+=for :stopwords Karen Etheridge Graham Knop Leon Timmermans smartmatch TODO Achtung subtest
 subtests irc YANWT
 
 =head1 NAME
@@ -148,7 +149,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SYNOPSIS
 
@@ -156,14 +157,27 @@ version 0.008
     use Test::Warnings;
 
     pass('yay!');
-    like(warning { warn "oh noes!" }, qr/^oh noes/, 'we warned');
     done_testing;
 
 emits TAP:
 
     ok 1 - yay!
+    ok 2 - no (unexpected) warnings (via done_testing)
+    1..2
+
+and:
+
+    use Test::More tests => 3;
+    use Test::Warnings 0.005 ':all';
+
+    pass('yay!');
+    like(warning { warn "oh noes!" }, qr/^oh noes/, 'we warned');
+
+emits TAP:
+
+    ok 1 - yay!
     ok 2 - we warned
-    ok 3 - no (unexpected) warnings (via done_testing)
+    ok 3 - no (unexpected) warnings (via END block)
     1..3
 
 =head1 DESCRIPTION
@@ -243,6 +257,33 @@ single warning produced, if there was one, or an arrayref otherwise -- which
 can be more convenient to use than C<warnings()> if you are expecting exactly
 one warning.
 
+However, you are advised to capture the result from C<warning()> into a temp
+variable so you can dump its value if it doesn't contain what you expect.
+e.g. with this test:
+
+    like(
+        warning { foo() },
+        qr/^this is a warning/,
+        'got a warning from foo()',
+    );
+
+if you get two warnings (or none) back instead of one, you'll get an
+arrayref, which will result in an unhelpful test failure message like:
+
+    #   Failed test 'got a warning from foo()'
+    #   at t/mytest.t line 10.
+    #                   'ARRAY(0xdeadbeef)'
+    #     doesn't match '(?^:^this is a warning)'
+
+So instead, change your test to:
+
+    my $warning = warning { foo() };
+    like(
+        $warning,
+        qr/^this is a warning/,
+        'got a warning from foo()',
+    ) or diag 'got warning(s): ', explain($warning);
+
 =back
 
 =head1 OTHER OPTIONS
@@ -272,6 +313,22 @@ indicate that warnings should be checked only in author tests (or TODO when
 not in author testing), but will still provide exported subs.  Comments are
 enthusiastically solicited - drop me an email, write up an RT ticket, or come
 by C<#perl-qa> on irc!
+
+B<Achtung!>  This is not a great idea:
+
+    sub warning_like(&$;$) {
+        my ($code, $pattern, $name) = @_;
+        like( &warning($code), $pattern, $name );
+    }
+
+    warning_like(sub { }, qr/foo/, 'foo appears in the warning');
+
+If the code in the C<...> is going to warn with a stack trace with the
+arguments to each subroutine in its call stack (for example via C<Carp::cluck>,
+the test name, "foo appears in the warning" will itself be matched by the
+regex.  Instead, write this:
+
+  like( warning { ... }, qr/foo/, 'foo appears in the warning' );
 
 =head1 TO DO (i.e. POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 

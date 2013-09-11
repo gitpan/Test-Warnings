@@ -1,7 +1,7 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More tests => 1;  # avoid our done_testing hook
+use Test::More;
 
 END {
     final_tests();
@@ -11,7 +11,9 @@ use Test::Warnings ':no_end_test';
 
 warn 'this warning should not be caught';
 
-pass 'a passing test, to keep the harness happy';
+pass 'a passing test to keep done_testing happy';
+
+done_testing;
 
 # this is run in the END block
 sub final_tests
