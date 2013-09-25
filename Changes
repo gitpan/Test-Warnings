@@ -1,5 +1,8 @@
 Revision history for Test-Warnings
 
+0.010     2013-09-25 03:29:53Z (Karen Etheridge)
+          - re-release with fixed compile test
+
 0.009     2013-09-11 04:49:55Z (Karen Etheridge)
           - fixed error in synopsis (we do not export anything by default)
           - a caveat added to the documentation regarding embedding warning
@@ -8,8 +11,6 @@ Revision history for Test-Warnings
             well as END blocks, making it possible to use the warning(s) subs
             without having an end warning test while using done_testing
             (necessary when combining with the 'if' pragma)
-          - END tests will not be added by a subequent use of Test::Warnings
-            if a previous one passed ':no_end_test'
 
 0.008     2013-07-14 12:02:01 PDT-0700 (Karen Etheridge)
           - compile test updated, to hopefully fix mswin32 parsing issues

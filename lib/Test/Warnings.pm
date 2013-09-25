@@ -5,9 +5,9 @@ BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
 }
 {
-  $Test::Warnings::VERSION = '0.009';
+  $Test::Warnings::VERSION = '0.010';
 }
-# git description: v0.008-13-g8f655c3
+# git description: v0.009-4-g9fec9c9
 
 # ABSTRACT: Test for warnings and the lack of them
 
@@ -30,7 +30,7 @@ sub import
 {
     # END block will check for this status
     my @symbols = grep { $_ ne ':no_end_test' } @_;
-    $no_end_test ||= (@symbols != @_);
+    $no_end_test = (@symbols != @_);
 
     __PACKAGE__->export_to_level(1, @symbols);
 }
@@ -149,7 +149,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 
@@ -292,7 +292,8 @@ So instead, change your test to:
 
 =item * C<:all> - Imports all functions listed above
 
-=item * C<:no_end_test> - Disables the addition of a C<had_no_warnings> test via END (but if you don't want to do this, you probably shouldn't be loading this module at all!)
+=item * C<:no_end_test> - Disables the addition of a C<had_no_warnings> test
+via C<END> or C<done_testing>
 
 =back
 
