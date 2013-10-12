@@ -5,9 +5,9 @@ BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
 }
 {
-  $Test::Warnings::VERSION = '0.010';
+  $Test::Warnings::VERSION = '0.011';
 }
-# git description: v0.009-4-g9fec9c9
+# git description: v0.010-2-g45289a3
 
 # ABSTRACT: Test for warnings and the lack of them
 
@@ -149,7 +149,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 SYNOPSIS
 
