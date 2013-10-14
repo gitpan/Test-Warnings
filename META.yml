@@ -28,7 +28,7 @@ no_index:
 provides:
   Test::Warnings:
     file: lib/Test/Warnings.pm
-    version: 0.011
+    version: 0.012
 requires:
   Exporter: 0
   Test::Builder: 0
@@ -40,7 +40,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings
   homepage: https://github.com/karenetheridge/Test-Warnings
   repository: https://github.com/karenetheridge/Test-Warnings.git
-version: 0.011
+version: 0.012
 x_Dist_Zilla:
   perl:
     version: 5.019004
@@ -172,7 +172,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Test::ReportPrereqs
       name: '@Author::ETHER/Test::ReportPrereqs'
-      version: 0.007
+      version: 0.008
     -
       class: Dist::Zilla::Plugin::PruneCruft
       name: '@Author::ETHER/PruneCruft'

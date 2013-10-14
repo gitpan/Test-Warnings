@@ -1,5 +1,9 @@
 Revision history for Test-Warnings
 
+0.012     2013-10-14 16:54:47Z (Karen Etheridge)
+          - re-release to fix t/00-report-prereqs.t use of
+            CPAN::Meta::Requirements
+
 0.011     2013-10-12 22:15:02Z (Karen Etheridge)
           - unnecessary tests removed; CONTRIBUTING file added
 
