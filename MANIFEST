@@ -8,6 +8,7 @@ META.json
 META.yml
 Makefile.PL
 README
+README.md
 dist.ini
 examples/no_plan.t
 examples/sub.t
@@ -50,5 +51,6 @@ xt/release/no-tabs.t
 xt/release/pod-coverage.t
 xt/release/pod-no404s.t
 xt/release/pod-syntax.t
+xt/release/portability.t
 xt/release/test-version.t
 xt/release/unused-vars.t

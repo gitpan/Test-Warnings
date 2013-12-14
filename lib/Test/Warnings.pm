@@ -1,14 +1,14 @@
 use strict;
 use warnings;
 package Test::Warnings;
+{
+  $Test::Warnings::VERSION = '0.013';
+}
+# git description: v0.012-7-g76a896b
+
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
 }
-{
-  $Test::Warnings::VERSION = '0.012';
-}
-# git description: v0.011-1-g15d5747
-
 # ABSTRACT: Test for warnings and the lack of them
 
 use parent 'Exporter';
@@ -138,7 +138,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =for :stopwords Karen Etheridge Graham Knop Leon Timmermans smartmatch TODO Achtung subtest
 subtests irc YANWT
@@ -149,7 +149,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 SYNOPSIS
 
@@ -213,9 +213,7 @@ the content of expected warnings; read on to find out how.
 The following functions are available for import (not included by default; you
 can also get all of them by importing the tag C<:all>):
 
-=over
-
-=item * C<< allow_warnings([bool]) >> - EXPERIMENTAL - MAY BE REMOVED
+=head2 C<< allow_warnings([bool]) >> - EXPERIMENTAL - MAY BE REMOVED
 
 When passed a true value, or no value at all, subsequent warnings will not
 result in a test failure; when passed a false value, subsequent warnings will
@@ -224,19 +222,19 @@ result in a test failure.  Initial value is C<false>.
 When warnings are allowed, any warnings will instead be emitted via
 L<Test::Builder::note|Test::Builder/Output>.
 
-=item * C<allowing_warnings> - EXPERIMENTAL - MAY BE REMOVED
+=head2 C<allowing_warnings> - EXPERIMENTAL - MAY BE REMOVED
 
 Returns whether we are currently allowing warnings (set by C<allow_warnings>
 as described above).
 
-=item * C<< had_no_warnings(<optional test name>) >>
+=head2 C<< had_no_warnings(<optional test name>) >>
 
 Tests whether there have been any warnings so far, not preceded by an
 C<allowing_warnings> call.  It is run
 automatically at the end of all tests, but can also be called manually at any
 time, as often as desired.
 
-=item * C<< warnings( { code } ) >>
+=head2 C<< warnings( { code } ) >>
 
 Given a code block, runs the block and returns a list of all the
 (not previously allowed via C<allow_warnings>) warnings issued within.  This
@@ -250,7 +248,7 @@ since they are returned from this function with their filename and line
 numbers intact, you can re-issue them yourself immediately after calling
 C<warnings(...)>, if desired.
 
-=item * C<< warning( { code } ) >>
+=head2 C<< warning( { code } ) >>
 
 Same as C<< warnings( { code } ) >>, except a scalar is always returned - the
 single warning produced, if there was one, or an arrayref otherwise -- which
@@ -284,11 +282,9 @@ So instead, change your test to:
         'got a warning from foo()',
     ) or diag 'got warning(s): ', explain($warning);
 
-=back
+=head1 IMPORT OPTIONS
 
-=head1 OTHER OPTIONS
-
-=over
+=over 4
 
 =item * C<:all> - Imports all functions listed above
 
