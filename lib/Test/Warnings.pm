@@ -1,15 +1,13 @@
 use strict;
 use warnings;
 package Test::Warnings;
-{
-  $Test::Warnings::VERSION = '0.013';
-}
-# git description: v0.012-7-g76a896b
-
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
 }
+# git description: v0.013-6-g5d4cc3c
+$Test::Warnings::VERSION = '0.014';
 # ABSTRACT: Test for warnings and the lack of them
+# vim: set ts=8 sw=4 tw=78 et :
 
 use parent 'Exporter';
 use Test::Builder;
@@ -149,7 +147,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.013
+version 0.014
 
 =head1 SYNOPSIS
 
@@ -318,16 +316,16 @@ B<Achtung!>  This is not a great idea:
         like( &warning($code), $pattern, $name );
     }
 
-    warning_like(sub { }, qr/foo/, 'foo appears in the warning');
+    warning_like( { ... }, qr/foo/, 'foo appears in the warning' );
 
-If the code in the C<...> is going to warn with a stack trace with the
-arguments to each subroutine in its call stack (for example via C<Carp::cluck>,
+If the code in the C<{ ... }> is going to warn with a stack trace with the
+arguments to each subroutine in its call stack (for example via C<Carp::cluck>),
 the test name, "foo appears in the warning" will itself be matched by the
 regex.  Instead, write this:
 
   like( warning { ... }, qr/foo/, 'foo appears in the warning' );
 
-=head1 TO DO (i.e. POSSIBLE FEATURES COMING IN FUTURE RELEASES)
+=head1 TO DO (or: POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 
 =over
 
@@ -370,11 +368,15 @@ L<strictures> - which makes all warnings fatal in tests, hence lessening
 
 the need for special warning testing
 
-=back
+=item *
 
 L<Test::Warn>
 
+=item *
+
 L<Test::Fatal>
+
+=back
 
 =head1 AUTHOR
 
