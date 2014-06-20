@@ -4,9 +4,10 @@ package Test::Warnings;
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
 }
-# git description: v0.013-6-g5d4cc3c
-$Test::Warnings::VERSION = '0.014';
+# git description: v0.014-6-ga3805e9
+$Test::Warnings::VERSION = '0.015';
 # ABSTRACT: Test for warnings and the lack of them
+# KEYWORDS: testing tests warnings
 # vim: set ts=8 sw=4 tw=78 et :
 
 use parent 'Exporter';
@@ -138,16 +139,13 @@ __END__
 
 =encoding UTF-8
 
-=for :stopwords Karen Etheridge Graham Knop Leon Timmermans smartmatch TODO Achtung subtest
-subtests irc YANWT
-
 =head1 NAME
 
 Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.014
+version 0.015
 
 =head1 SYNOPSIS
 
@@ -293,6 +291,8 @@ via C<END> or C<done_testing>
 
 =head1 CAVEATS
 
+=for stopwords smartmatch TODO irc
+
 Sometimes new warnings can appear in Perl that should B<not> block
 installation -- for example, smartmatch was recently deprecated in
 perl 5.17.11, so now any distribution that uses smartmatch and also
@@ -308,6 +308,8 @@ indicate that warnings should be checked only in author tests (or TODO when
 not in author testing), but will still provide exported subs.  Comments are
 enthusiastically solicited - drop me an email, write up an RT ticket, or come
 by C<#perl-qa> on irc!
+
+=for stopwords Achtung
 
 B<Achtung!>  This is not a great idea:
 
@@ -331,6 +333,8 @@ regex.  Instead, write this:
 
 =item * C<< allow_warnings(qr/.../) >> - allow some warnings and not others
 
+=for stopwords subtest subtests
+
 =item * more sophisticated handling in subtests - if we save some state on the
 L<Test::Builder> object itself, we can allow warnings in a subtest and then
 the state will revert when the subtest ends, as well as check for warnings at
@@ -343,10 +347,14 @@ environment
 
 =head1 SUPPORT
 
+=for stopwords irc
+
 Bugs may be submitted through L<https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings>.
 I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 
 =head1 SEE ALSO
+
+=for stopwords YANWT
 
 =over 4
 

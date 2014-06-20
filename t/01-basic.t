@@ -1,20 +1,17 @@
 use strict;
 use warnings FATAL => 'all';
 
-# basic tests, using Test::Builder 0.98 or earlier.
+my $has_test_tester;
+BEGIN { $has_test_tester = eval { require Test::Tester; Test::Tester->VERSION(0.108); 1 } }
 
-use Test::Tester 0.108;
 use Test::More;
-
-plan skip_all => 'These tests are only for Test::Builder 0.9x'
-    if Test::Builder->VERSION >= 1.005;
+plan skip_all => 'These tests require Test::Tester 0.108' if not $has_test_tester;
 
 plan tests => 19;     # avoid our done_testing hook
 
 # define our END block first, so it is run last (after TW's END)
 END {
-    final_tests()
-        if Test::Builder->VERSION < 1.005;
+    final_tests() if $has_test_tester;
 }
 
 use Test::Warnings ':all';
@@ -43,7 +40,7 @@ had_no_warnings('no warnings, with a custom name');     # TEST 2
 sub final_tests
 {
     my @tests = $capture->details;
-    cmp_results(
+    Test::Tester::cmp_results(
         \@tests,
         [
             {   # TEST 1
@@ -75,4 +72,3 @@ sub final_tests
         'all functionality ok, checking warnings via END block',
     );
 }
-

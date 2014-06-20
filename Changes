@@ -1,8 +1,12 @@
 Revision history for Test-Warnings
 
+0.015     2014-06-20 03:36:33Z
+          - adjusted packaging and tests to become perl-5.6 friendly,
+            including only using core or dual-lifed prerequisites
+
 0.014     2014-03-01 22:08:26Z
-          - fix test that fails when FOO or BAR environment variables are set
-          (RT#93447)
+          - fix test that was failing when FOO or BAR environment variables
+            were set (RT#93447)
 
 0.013     2013-12-14 21:26:06Z
           - update configure_requires checking in Makefile.PL
