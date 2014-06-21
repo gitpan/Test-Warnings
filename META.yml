@@ -30,7 +30,7 @@ no_index:
 provides:
   Test::Warnings:
     file: lib/Test/Warnings.pm
-    version: '0.015'
+    version: '0.016'
 requires:
   Exporter: '0'
   Test::Builder: '0'
@@ -44,7 +44,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings
   homepage: https://github.com/karenetheridge/Test-Warnings
   repository: https://github.com/karenetheridge/Test-Warnings.git
-version: '0.015'
+version: '0.016'
 x_Dist_Zilla:
   perl:
     version: '5.020000'
@@ -505,7 +505,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: v0.015
+          tag: v0.016
           tag_format: v%v%t
           tag_message: v%v%t
           time_zone: local
@@ -570,6 +570,26 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::MetaResources
       name: MetaResources
+      version: '5.019'
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: develop
+          type: requires
+      name: DevelopRequires
+      version: '5.019'
+    -
+      class: Dist::Zilla::Plugin::GenerateFile
+      name: synopsis_1
+      version: '5.019'
+    -
+      class: Dist::Zilla::Plugin::GenerateFile
+      name: synopsis_2
+      version: '5.019'
+    -
+      class: Dist::Zilla::Plugin::GenerateFile
+      name: test_warning_contents
       version: '5.019'
     -
       class: Dist::Zilla::Plugin::FinderCode

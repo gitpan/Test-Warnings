@@ -17,7 +17,7 @@ my @scripts = (
     'examples/sub.t',
     'examples/synopsis_1.t',
     'examples/synopsis_2.t',
-    'examples/test_nowarnings.pl',
+    'examples/test_nowarnings.t',
     'examples/test_warning_contents.t',
     'examples/warning_like.t',
     'examples/with_done_testing.t',

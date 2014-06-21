@@ -4,8 +4,8 @@ package Test::Warnings;
 BEGIN {
   $Test::Warnings::AUTHORITY = 'cpan:ETHER';
 }
-# git description: v0.014-6-ga3805e9
-$Test::Warnings::VERSION = '0.015';
+# git description: v0.015-4-g384099c
+$Test::Warnings::VERSION = '0.016';
 # ABSTRACT: Test for warnings and the lack of them
 # KEYWORDS: testing tests warnings
 # vim: set ts=8 sw=4 tw=78 et :
@@ -145,7 +145,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 
@@ -323,7 +323,7 @@ B<Achtung!>  This is not a great idea:
 If the code in the C<{ ... }> is going to warn with a stack trace with the
 arguments to each subroutine in its call stack (for example via C<Carp::cluck>),
 the test name, "foo appears in the warning" will itself be matched by the
-regex.  Instead, write this:
+regex (see F<examples/warning_like.t>).  Instead, write this:
 
   like( warning { ... }, qr/foo/, 'foo appears in the warning' );
 

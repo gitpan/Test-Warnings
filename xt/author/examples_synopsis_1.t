@@ -1,3 +1,4 @@
+# generated from examples/synopsis_1.t
 use strict;
 use warnings;
 
@@ -9,3 +10,4 @@ use Test::Warnings;
 
 pass('yay!');
 done_testing;
+

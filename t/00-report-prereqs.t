@@ -55,11 +55,13 @@ my $static_prereqs = do { my $x = {
                       'requires' => {
                                       'Dist::Zilla' => '5',
                                       'Dist::Zilla::Plugin::ContributorsFromGit' => '0',
+                                      'Dist::Zilla::Plugin::GenerateFile' => '0',
                                       'Dist::Zilla::Plugin::GitHub::Update' => '0',
                                       'Dist::Zilla::Plugin::GithubMeta' => '0',
                                       'Dist::Zilla::Plugin::MakeMaker' => '0',
                                       'Dist::Zilla::Plugin::MetaResources' => '0',
                                       'Dist::Zilla::Plugin::OnlyCorePrereqs' => '0.013',
+                                      'Dist::Zilla::Plugin::Prereqs' => '0',
                                       'Dist::Zilla::Plugin::Prereqs::Soften' => '0',
                                       'Dist::Zilla::Plugin::Test::CleanNamespaces' => '0',
                                       'Dist::Zilla::PluginBundle::Author::ETHER' => '0.041',
@@ -71,9 +73,11 @@ my $static_prereqs = do { my $x = {
                                       'Test::CPAN::Changes' => '0.19',
                                       'Test::CPAN::Meta' => '0',
                                       'Test::CleanNamespaces' => '>= 0.04, != 0.06',
+                                      'Test::Deep' => '0',
                                       'Test::Kwalitee' => '1.12',
                                       'Test::More' => '0.94',
                                       'Test::NoTabs' => '0',
+                                      'Test::NoWarnings' => '0',
                                       'Test::Pod' => '1.41',
                                       'Test::Spelling' => '0.12'
                                     }

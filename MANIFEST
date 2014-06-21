@@ -14,7 +14,7 @@ examples/no_plan.t
 examples/sub.t
 examples/synopsis_1.t
 examples/synopsis_2.t
-examples/test_nowarnings.pl
+examples/test_nowarnings.t
 examples/test_warning_contents.t
 examples/warning_like.t
 examples/with_done_testing.t
@@ -32,11 +32,11 @@ t/08-use-if.t
 t/09-warnings-contents.t
 t/10-no-done_testing.t
 t/11-double-use.t
-t/50-examples-synopsis_1.t
-t/50-examples-synopsis_2.t
-t/50-examples-test_warning_contents.t
 weaver.ini
 xt/author/00-compile.t
+xt/author/examples_synopsis_1.t
+xt/author/examples_synopsis_2.t
+xt/author/examples_test_warning_contents.t
 xt/author/pod-spell.t
 xt/release/changes_has_content.t
 xt/release/clean-namespaces.t

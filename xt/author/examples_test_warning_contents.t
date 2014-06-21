@@ -1,3 +1,4 @@
+# generated from examples/test_warning_contents.t
 use strict;
 use warnings FATAL => 'all';
 
@@ -29,3 +30,4 @@ cmp_deeply(
 allow_warnings;
 warn $_ foreach @warnings;
 allow_warnings(0);
+
