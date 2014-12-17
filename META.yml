@@ -30,7 +30,7 @@ no_index:
 provides:
   Test::Warnings:
     file: lib/Test/Warnings.pm
-    version: '0.017'
+    version: '0.018'
 requires:
   Carp: '0'
   Exporter: '0'
@@ -45,7 +45,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings
   homepage: https://github.com/karenetheridge/Test-Warnings
   repository: https://github.com/karenetheridge/Test-Warnings.git
-version: '0.017'
+version: '0.018'
 x_Dist_Zilla:
   perl:
     version: '5.021005'
@@ -113,7 +113,7 @@ x_Dist_Zilla:
       config:
         Dist::Zilla::Plugin::GatherDir:
           exclude_filename:
-            - README.md
+            - README.pod
             - LICENSE
             - CONTRIBUTING
             - blog_20130309.md
@@ -579,7 +579,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: v0.017
+          tag: v0.018
           tag_format: v%v%t
           tag_message: v%v%t
           time_zone: local
