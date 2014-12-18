@@ -1,5 +1,9 @@
 Revision history for Test-Warnings
 
+0.019     2014-12-18 20:07:02Z
+          - fix test to allow for special characters (e.g. MSWin32 file
+            separators) in filenames (A. Sinan Unur, PR#7)
+
 0.018     2014-12-17 18:17:30Z
           - fix test to not depend on message formatting changes in newer Carp
 

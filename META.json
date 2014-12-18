@@ -155,7 +155,7 @@
    "provides" : {
       "Test::Warnings" : {
          "file" : "lib/Test/Warnings.pm",
-         "version" : "0.018"
+         "version" : "0.019"
       }
    },
    "release_status" : "stable",
@@ -173,7 +173,7 @@
       "x_IRC" : "irc://irc.perl.org/#perl-qa",
       "x_MailingList" : "http://lists.perl.org/list/perl-qa.html"
    },
-   "version" : "0.018",
+   "version" : "0.019",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.021005"
@@ -876,7 +876,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "v0.018",
+                  "tag" : "v0.019",
                   "tag_format" : "v%v%t",
                   "tag_message" : "v%v%t",
                   "time_zone" : "local"
@@ -941,7 +941,7 @@
                }
             },
             "name" : "OnlyCorePrereqs",
-            "version" : "0.017"
+            "version" : "0.019"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs::Soften",
@@ -1057,6 +1057,7 @@
    "x_authority" : "cpan:ETHER",
    "x_authority_from_module" : "Test::Warnings",
    "x_contributors" : [
+      "A. Sinan Unur <nanis@cpan.org>",
       "Graham Knop <haarg@haarg.org>",
       "Leon Timmermans <fawaka@gmail.com>"
    ],

@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 package Test::Warnings;
-# git description: v0.017-1-gd4c3789
-{ our $VERSION = '0.018'; }
+# git description: v0.018-3-g0fac7a0
+{ our $VERSION = '0.019'; }
 # ABSTRACT: Test for warnings and the lack of them
 # KEYWORDS: testing tests warnings
 # vim: set ts=8 sw=4 tw=78 et :
@@ -148,7 +148,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 SYNOPSIS
 
@@ -425,9 +425,13 @@ the same terms as the Perl 5 programming language system itself.
 
 =head1 CONTRIBUTORS
 
-=for stopwords Graham Knop Leon Timmermans
+=for stopwords A. Sinan Unur Graham Knop Leon Timmermans
 
 =over 4
+
+=item *
+
+A. Sinan Unur <nanis@cpan.org>
 
 =item *
 

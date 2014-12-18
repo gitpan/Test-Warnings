@@ -30,7 +30,7 @@ no_index:
 provides:
   Test::Warnings:
     file: lib/Test/Warnings.pm
-    version: '0.018'
+    version: '0.019'
 requires:
   Carp: '0'
   Exporter: '0'
@@ -45,7 +45,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings
   homepage: https://github.com/karenetheridge/Test-Warnings
   repository: https://github.com/karenetheridge/Test-Warnings.git
-version: '0.018'
+version: '0.019'
 x_Dist_Zilla:
   perl:
     version: '5.021005'
@@ -579,7 +579,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: v0.018
+          tag: v0.019
           tag_format: v%v%t
           tag_message: v%v%t
           time_zone: local
@@ -627,7 +627,7 @@ x_Dist_Zilla:
           skips: []
           starting_version: '5.006'
       name: OnlyCorePrereqs
-      version: '0.017'
+      version: '0.019'
     -
       class: Dist::Zilla::Plugin::Prereqs::Soften
       config:
@@ -715,6 +715,7 @@ x_Dist_Zilla:
 x_authority: cpan:ETHER
 x_authority_from_module: Test::Warnings
 x_contributors:
+  - 'A. Sinan Unur <nanis@cpan.org>'
   - 'Graham Knop <haarg@haarg.org>'
   - 'Leon Timmermans <fawaka@gmail.com>'
 x_permissions_from_module: Test::Warnings
